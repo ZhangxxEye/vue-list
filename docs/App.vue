@@ -41,7 +41,13 @@ export default {
 
 <style lang="scss" scoped>
 @import 'colors';
-
+main {
+  flex: 1 0 calc(100% - 300px);
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  /*overflow-y: scroll;*/
+}
 #app {
   width: 100%;
   display: flex;
@@ -71,21 +77,6 @@ export default {
     }
   }
 }
-
-main {
-  flex: 1 0 calc(100% - 300px);
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  overflow-y: scroll;
-}
-
-@media (max-width: 940px) {
-  main {
-    flex: 1 0 100%;
-  }
-}
-
 .content {
   flex: 1 0 auto;
   flex-direction: column;

@@ -46,7 +46,26 @@ export function getScrollTop(element) {
  * @param element
  * @return height
  */
-function getElementTop(element) {
+export function getElementTop(element) {
     return element === window ? 0 : element.getBoundingClientRect().top +
         getScrollTop(window)
+}
+/**
+ * 元素绑定事件
+ * @param element 元素
+ * @param eventName {string} 事件名称
+ * @param handler {function} 回调函数
+ */
+export function on(element, eventName, handler) {
+    element.addEventListener(eventName, handler);
+}
+
+/**
+ * 元素解绑事件
+ * @param element 元素
+ * @param eventName {string} 事件名称
+ * @param handler {function} 回调函数
+ */
+export function off(element, eventName, handler) {
+    element.removeEventListener(eventName, handler);
 }

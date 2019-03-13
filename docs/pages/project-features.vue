@@ -1,47 +1,66 @@
 <template lang="html">
     <div id="project-features">
-        <h1 class="title">标签页</h1>
+        <h1 class="title">vue-list</h1>
         <div class="features">
-            <tabs active-index="1" @clicked="handleClick">
-                <tab name="标签一">
-                    <p>
-                        标签一
-                    </p>
-                </tab>
-                <tab name="标签二">这是tab2</tab>
-                <tab name="标签三" :isDisabled="true">这是tab3</tab>
-                <tab name="标签四">这是tab4</tab>
-                <tab name="标签五">这是tab5</tab>
-            </tabs>
-        </div>
-        <div class="test-box">
-            <div class="item">tab1</div>
-            <div class="item">tab2</div>
-            <div class="item">tab3</div>
-            <div class="item">tab4</div>
-            <div class="item">tab4</div>
-            <div class="item">tab4</div>
-            <div class="item">tab4</div>
-            <div class="item">tab4</div>
-            <div class="item">tab4</div>
-            <div class="item">tab4</div>
+            <list @load="onLoad" v-model="loading" :finished="finished" loading-text="加载中..." finished-text="没有更多了" :error.sync="error" error-text="加载失败,点击重新加载">
+                <ul>
+                    <li v-for="item in list">{{item}}</li>
+                </ul>
+            </list>
         </div>
     </div>
 </template>
 
 <script>
-    import tab from '../../src/tab';
-    import tabs from '../../src/tabs';
-
+    import list from '../../src/index';
+    import axois from 'axios';
     export default {
         name: 'ProjectFeatures',
+        data() {
+            return {
+                list: [],
+                loading: false,
+                finished: false,
+                error: false
+            };
+        },
         components: {
-            tab,
-            tabs
+            list,
+        },
+        mounted () {
         },
         methods: {
             handleClick (value) {
                 console.log('selected', value);
+            },
+            getLists () {
+                axois.get('http://172.16.0.45:7300/mock/5c88c2241d2cb328eddca711/components/api/list').then(r => {
+                    this.list.push(...r.data.data);
+                    if (this.list.length >= 90) {
+                        this.finished = true;
+                    }
+                }).catch(e => {
+                    this.error = true;
+                }).finally(() => {
+                    this.loading = false;
+                });
+            },
+            onLoad() {
+                this.getLists();
+                // 异步更新数据
+                /*setTimeout(() => {
+                    for (let i = 0; i < 10; i++) {
+                        this.list.push(this.list.length + 1);
+                    }
+                    // 加载状态结束
+                    // this.loading = false;
+                    this.error = true;
+
+                    // 数据全部加载完成
+                    if (this.list.length >= 90) {
+                        this.finished = true;
+                    }
+                }, 500);*/
             }
         }
     };
@@ -50,12 +69,13 @@
 <style lang="scss">
     @import '~colors';
     .test-box{
-        display: flex;
-        overflow: hidden;
-        overflow-x: auto;
+        width: 100%;
+        height: 300px;
+        overflow-y: scroll;
     }
-    .test-box::-webkit-scrollbar{
-        display: none;
+    .outer-container{
+        height: 200px;
+        width: 300px;
     }
     .item{
         flex:0 0 22%;
