@@ -1,6 +1,6 @@
 {
-  "name": "nat-vue-tabs",
-  "version": "1.0.2",
+  "name": "@nat/vue-list",
+  "version": "1.0.0",
   "author": "ZhangxxEye",
   "license": "MIT",
   "description": "tab标签页",
@@ -9,12 +9,12 @@
   "keywords": [
     "javascript",
     "vue",
-    "tabs",
-    "tab"
+    "list",
+    "lazyload"
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:ZhangxxEye/vue-tabs.git"
+    "url": "git@github.com:ZhangxxEye/vue-list.git"
   },
   "main": "dist/index.js",
   "scripts": {

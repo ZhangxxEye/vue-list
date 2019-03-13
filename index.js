@@ -1,8 +1,5 @@
-import VueTabs from './src/tabs';
-import VueTab from './src/tab';
-VueTabs.install = Vue => Vue.component(VueTabs.name, VueTabs);
-VueTab.install = Vue => Vue.component(VueTab.name, VueTab);
+import VueList from './src/index';
+VueList.install = Vue => Vue.component(VueList.name, VueList);
 export {
-    VueTabs,
-    VueTab
+    VueList
 };
