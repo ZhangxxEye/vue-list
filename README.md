@@ -1,9 +1,9 @@
-# vue-search
-tab标签页
+# vue-list
+滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项
 ## install
 NPM
 ```
-npm install @nat/vue-list
+npm install nat-vue-list
 ```
 ## 用法
 ```
@@ -17,7 +17,7 @@ npm install @nat/vue-list
 ```
 ```
 <script>
-  import list from '@nat/vue-list';
+  import list from 'nat-vue-list';
   import axois from 'axios';
  export default {
      name: 'ProjectFeatures',
@@ -57,7 +57,6 @@ npm install @nat/vue-list
 ```
 ## API
 #### props
-##### tabs
 属性 | 说明 | 类型 | 默认值
 ---|---|---|---
 loading | 是否处于加载状态，加载过程中不触发load事件 | Boolean | false
@@ -72,6 +71,12 @@ errorText | 加载失败后的提示文案 | String |
 名称 | 说明 | 参数值
 ---|---|---
 load | 滚动条与底部距离小于 offset 时触发 |  
+
+#### 方法
+通过 ref 可以获取到 list 实例并调用实例方法
+名称 | 参数 | 返回值 | 介绍
+---|---|---|---
+check | - | - |检查当前的滚动位置，若已滚动至底部，则会触发 load 事件 
 
 ## 启动
 ```

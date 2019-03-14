@@ -1,9 +1,9 @@
 {
-  "name": "@nat/vue-list",
+  "name": "nat-vue-list",
   "version": "1.0.0",
   "author": "ZhangxxEye",
   "license": "MIT",
-  "description": "tab标签页",
+  "description": "滚动加载，用于展示长列表，当列表即将滚动到底部时，会触发事件并加载更多列表项",
   "homepage": "",
   "private": false,
   "keywords": [

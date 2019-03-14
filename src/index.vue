@@ -65,7 +65,6 @@
              * 判断滚动条是否滚动到设定的临界值
              */
             check () {
-                console.log('check');
                 if (this.loading || this.finished || this.error) return;
                 const el = this.$el;
                 const { scroller } = this;
@@ -76,12 +75,9 @@
                 const scrollTop = getScrollTop(scroller);
                 const targetBottom = scrollTop + scrollerHeight;
                 let reachBottom = false;
-                console.log('文档height', document.documentElement.scrollHeight);
-                console.log('targetBottom', targetBottom);
                 if (scroller === window) reachBottom = document.documentElement.scrollHeight - targetBottom < this.offset;
                 else
                     reachBottom = scroller.scrollHeight - targetBottom < this.offset;
-                console.log('bottom', document.documentElement.scrollHeight - targetBottom);
                 if (reachBottom) {
                     this.$emit('input', true);
                     this.$emit('load');
